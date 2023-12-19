@@ -19,7 +19,7 @@ A simple News Proof of Concept (POC) application that displays top headlines fro
 
 - **APK**: You can find the installable APK for the application in the [APK](https://github.com/rahuljidgedev/headlines-app/blob/main/demo/app-debug.apk) directory.
 
-- **Images**: Explore screenshots and images from the app in the [Images](https://github.com/rahuljidgedev/headlines-app/blob/main/demo/) directory.
+  - **Images**: Explore screenshots and images from the app in the [Images](https://github.com/rahuljidgedev/headlines-app/blob/main/demo/) directory.
 
 ### Features
 
@@ -38,6 +38,7 @@ A simple News Proof of Concept (POC) application that displays top headlines fro
 * Use Cases
 * Retrofit (remote data)
 * Get_it (Dependency injection)
+* Floor
 
 
 ### Getting Started
