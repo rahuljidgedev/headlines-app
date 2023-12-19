@@ -6,22 +6,33 @@ import '../../domain/entities/article.dart';
 
 class ArticleWidget extends StatelessWidget {
   final ArticleEntity ? article;
+  final bool ? isRemovable;
+  final void Function(ArticleEntity entity) ? onRemove;
+  final void Function(ArticleEntity entity) ? onArticlePressed;
 
   const ArticleWidget({
     Key ? key,
     this.article,
+    this.onArticlePressed,
+    this.isRemovable = false,
+    this.onRemove,
   }): super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsetsDirectional.only(start: 14, end: 14, bottom: 7, top: 7),
-      height: MediaQuery.of(context).size.width / 2.2,
-      child: Row(
-        children: [
-          _buildImage(context),
-          _buildTitleAndDescription()
-        ],
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: _onTap,
+      child: Container(
+        padding: const EdgeInsetsDirectional.only(start: 14, end: 14, bottom: 7, top: 7),
+        height: MediaQuery.of(context).size.width / 2.2,
+        child: Row(
+          children: [
+            _buildImage(context),
+            _buildTitleAndDescription(),
+            _buildRemovableArea(),
+          ],
+        ),
       ),
     );
   }
@@ -127,5 +138,31 @@ class ArticleWidget extends StatelessWidget {
         ),
       ),
     );
+  }
+
+
+  Widget _buildRemovableArea() {
+    if (isRemovable!) {
+      return GestureDetector(
+        onTap: _onRemove,
+        child: const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 8),
+          child: Icon(Icons.remove_circle_outline, color: Colors.red),
+        ),
+      );
+    }
+    return Container();
+  }
+
+  void _onTap() {
+    if (onArticlePressed != null) {
+      onArticlePressed!(article!);
+    }
+  }
+
+  void _onRemove() {
+    if (onRemove != null) {
+      onRemove!(article!);
+    }
   }
 }
